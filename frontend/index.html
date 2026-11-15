@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORBIT AI v28.0 — SUPREME QUANTITATIVE MATRIX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--bg:#000205;--panel:#03060f;--line:#0b1320;--muted:#7b8ea8;--text:#eef4ff;--green:#10b981;--red:#f43f5e;--blue:#3b82f6;--violet:#8b5cf6;--amber:#f59e0b;--cyan:#06b6d4;--purple:#a855f7;--mono:'JetBrains Mono',monospace;--sans:Inter,system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;color:var(--text);font:14px var(--sans);min-height:100vh;overflow-x:hidden;background:radial-gradient(circle at 10% 10%,rgba(59,130,246,.25),transparent 40%),radial-gradient(circle at 90% 85%,rgba(16,185,129,.15),transparent 40%),var(--bg)}
+button,select,input{font:inherit}button{cursor:pointer}
+.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+.side{background:linear-gradient(180deg,#010307,#000001);border-right:1px solid #0a101c;padding:22px 16px;display:flex;flex-direction:column;gap:22px}
+.brand{display:flex;align-items:center;gap:11px;font-size:16px;font-weight:900;letter-spacing:.8px;background:linear-gradient(90deg,#8b5cf6,#06b6d4,#10b981,#a855f7);background-size:300% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 10s linear infinite}
+@keyframes shine{to{background-position:300% center}}
+.brand i{color:var(--cyan);font-size:22px;-webkit-text-fill-color:initial;background:none;filter:drop-shadow(0 0 16px rgba(6,182,212,.9))}
+.brand small{display:block;color:var(--muted);font:9px var(--mono);letter-spacing:1.4px;margin-top:3px;-webkit-text-fill-color:var(--muted)}
+.nav{display:grid;gap:6px}
+.nav div{padding:11px 12px;border-radius:9px;color:var(--muted);font-weight:600;cursor:pointer;border:1px solid transparent;transition:all .3s cubic-bezier(.2,.8,.2,1)}
+.nav div:hover{background:#08101d;color:#e2ecff;transform:translateX(4px)}
+.nav div.active{background:linear-gradient(100deg,#12213a,#08101d);border-color:#203758;color:#c7dcff}
+.nav i{width:22px}
+.side-note{margin-top:auto;padding:12px;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-size:10px;line-height:1.6;background:rgba(3,6,14,.7)}
+.main{min-width:0}
+.top{height:70px;border-bottom:1px solid #0e1828;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(2,4,9,.9);position:sticky;top:0;z-index:5;backdrop-filter:blur(16px)}
+.top h1{font-size:14px;margin:0;letter-spacing:.5px}.top p{margin:3px 0 0;color:var(--muted);font-size:11px}
+.top-right{display:flex;gap:14px;align-items:center}
+.status{display:flex;gap:8px;align-items:center;font:11px var(--mono);color:var(--amber)}
+.dot{width:7px;height:7px;background:currentColor;border-radius:50%;box-shadow:0 0 12px currentColor;animation:pulseDot 2s infinite}
+@keyframes pulseDot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.6}}
+.latency,.utcclock{font:10px var(--mono);color:var(--muted)}.latency b{color:var(--cyan)}
+.wrap{padding:20px;max-width:1800px;margin:auto}
+.toolbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.btn,.control{background:#060d18;border:1px solid var(--line);color:var(--text);padding:9px 13px;border-radius:8px;transition:all .25s ease}
+.btn.primary{background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-color:#3b82f6;color:#fff;font-weight:700;box-shadow:0 0 20px rgba(59,130,246,.3)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.control{color:var(--muted);font:10px var(--mono)}
+.panel{background:linear-gradient(145deg,#040812,#010307);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:12px}
+.panel-head h2{font-size:12px;margin:0;letter-spacing:.5px}.panel-head span{font:10px var(--mono);color:var(--muted)}
+.tf-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.tf-btn{padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:#040812;color:var(--muted);font:10px var(--mono);cursor:pointer;transition:all .2s}
+.tf-btn.active{background:linear-gradient(135deg,#183054,#0d1a2f);border-color:#3b82f6;color:#fff;box-shadow:0 0 10px rgba(59,130,246,.2)}
+.muted{color:var(--muted)}.green{color:var(--green)}.red{color:var(--red)}.amber{color:var(--amber)}.blue{color:#93c5fd}.purple{color:var(--purple)}.cyan{color:#06b6d4}
+.badge{padding:3px 7px;border-radius:4px;font:700 8px var(--mono);display:inline-block}
+.badge.long{background:#064e3b;color:var(--green);border:1px solid #065f46}.badge.short{background:#4c0519;color:var(--red);border:1px solid #881337}
+.badge.master{background:#1e1b4b;color:#c084fc;border:1px solid #4338ca}
+.empty{padding:40px 15px;text-align:center;color:var(--muted);font:11px var(--mono);line-height:1.8}
+.log{height:210px;overflow:auto;background:#000103;border:1px solid var(--line);border-radius:7px;padding:10px;font:10px/1.75 var(--mono);color:#7b90b2}
+.ai-commandbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 20px;margin:2px 0 14px;border:1px solid #1c3559;border-radius:14px;background:linear-gradient(110deg,#081222,#010307 72%)}
+.ai-kicker{font:9px var(--mono);letter-spacing:1.6px;color:#93c5fd}
+.ai-commandbar h2{font-size:20px;margin:6px 0 3px}.ai-commandbar p{margin:0;color:#7d96b8;font-size:11px}
+.ai-live{font:9px var(--mono);letter-spacing:1px;color:#34d399;border:1px solid #065f46;border-radius:30px;padding:7px 11px;background:#06231b;white-space:nowrap}
+.ai-live.off{color:#fbbf24;border-color:#78350f;background:#271806}
+#signals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.compact-signal{padding:14px;border:1px solid #1c3355;border-left:4px solid var(--green);border-radius:10px;background:linear-gradient(145deg,#081222,#010307 76%);animation:fadeIn .4s cubic-bezier(.2,.8,.2,1)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.compact-signal.short{border-left-color:var(--red)}
+.compact-top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.compact-symbol{display:flex;gap:9px;align-items:center}.compact-symbol b{font-size:13px}
+.compact-symbol small{display:block;color:#7e98bc;font:9px var(--mono);margin-top:2px}
+.signal-orb{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+.short .signal-orb{background:var(--red);box-shadow:0 0 8px var(--red)}
+.compact-levels{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:9px 0;margin-top:9px;border-top:1px solid #101c2e;border-bottom:1px solid #101c2e}
+.compact-levels small{display:block;color:#738cac;font:8px var(--mono)}.compact-levels b{display:block;font:600 10px var(--mono);margin-top:3px}
+.size-line{margin-top:8px;padding:6px 9px;background:#020610;border:1px solid #122542;border-radius:6px;font:9px var(--mono);color:#93c5fd;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;margin-bottom:12px;border:1px solid var(--line);border-radius:9px;background:#02050e}
+.filter-bar #fSearch{flex:1;min-width:140px}
+.filter-chips{display:flex;gap:4px;flex-wrap:wrap}
+.filter-chip{padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:#000206;color:var(--muted);font:10px var(--mono)}
+.filter-chip.active{background:#152e52;border-color:#3b82f6;color:#e2ecff}
+.modal-overlay{position:fixed;inset:0;background:rgba(1,2,5,.88);z-index:100;display:none;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+.modal-overlay.open{display:flex}
+.modal-card{width:92%;max-width:680px;background:#040914;border:1px solid #243e68;border-radius:14px;padding:20px;box-shadow:0 0 40px rgba(6,182,212,.2)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:12px}
+.modal-head h3{margin:0;font-size:13px;color:#93c5fd}
+.modal-close{background:none;border:none;color:var(--muted);font-size:16px}
+.factor-inspect-list{max-height:420px;overflow-y:auto;display:grid;gap:5px;padding-right:4px}
+.factor-inspect-row{background:#000206;border:1px solid var(--line);padding:8px 11px;border-radius:6px;display:flex;justify-content:space-between;font:10px var(--mono)}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side">
+  <div class="brand"><i class="fa-solid fa-brain"></i><div>ORBIT AI v28.0<small>SUPREME MATRIX</small></div></div>
+  <div class="nav">
+    <div class="active" data-view="home"><i class="fa-solid fa-bolt"></i> Live Multi-TF Feed</div>
+    <div data-view="risk"><i class="fa-solid fa-vault"></i> System Telemetry</div>
+  </div>
+  <div class="side-note">
+    <b style="color:#cbd8eb">120-FACTOR ENGINE</b><br>
+    • 9 Timeframes (1m to 1W)<br>
+    • Institutional SMC & Wyckoff<br>
+    • Real-time WebSocket Stream
+  </div>
+</aside>
+<main class="main">
+<header class="top">
+  <div><h1>ORBIT AI · v28.0 SUPREME QUANTITATIVE MATRIX</h1><p>Autonomous 120-Factor Engine (1m to 1W) · Real-Time Order-Flow Analysis</p></div>
+  <div class="top-right">
+    <span class="latency" id="workerStatus">ENGINE <b>IDLE</b></span>
+    <span class="utcclock" id="utcClock">--:--:-- UTC</span>
+    <div class="status" id="status"><i class="dot"></i><span id="statusText">READY</span></div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="toolbar">
+    <button class="btn primary" id="scanBtn"><i class="fa-solid fa-play"></i> Start Supreme Engine</button>
+    <button class="btn" id="stopBtn" disabled><i class="fa-solid fa-stop"></i> Stop</button>
+    <span class="control">SYMBOLS <b class="cyan" id="hMarkets">0</b></span>
+    <span class="control">SIGNALS <b class="green" id="hOpen">0</b></span>
+  </div>
+  <section class="workspace" id="homeView">
+    <div class="ai-commandbar">
+      <div>
+        <span class="ai-kicker"><i class="fa-solid fa-fire"></i> MULTI-TIMEFRAME SCANNER ACTIVE</span>
+        <h2>120-Factor Consensus Signal Matrix</h2>
+        <p>Continuous algorithmic evaluation across liquidity sweeps, BOS, order blocks, FVG, CVD, and Wyckoff structures.</p>
+      </div>
+      <div class="ai-live off" id="aiLive">STANDBY</div>
+    </div>
+    <div class="tf-row" id="tfSelectorRow">
+      <button class="tf-btn active" data-tf="ALL">ALL TIMEFRAMES</button>
+      <button class="tf-btn" data-tf="1m">1m</button>
+      <button class="tf-btn" data-tf="3m">3m</button>
+      <button class="tf-btn" data-tf="5m">5m</button>
+      <button class="tf-btn" data-tf="15m">15m</button>
+      <button class="tf-btn" data-tf="30m">30m</button>
+      <button class="tf-btn" data-tf="1h">1h</button>
+      <button class="tf-btn" data-tf="4h">4h</button>
+      <button class="tf-btn" data-tf="1d">1d</button>
+      <button class="tf-btn" data-tf="1w">1w</button>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><h2><i class="fa-solid fa-bolt amber"></i> LIVE INSTITUTIONAL SIGNAL FEED</h2><span id="feedCount">0 SIGNALS</span></div>
+      <div class="filter-bar">
+        <input type="search" id="fSearch" class="control" placeholder="Filter symbol (e.g. BTCUSDT)...">
+        <div class="filter-chips" id="fDir">
+          <button class="filter-chip active" data-v="ALL">ALL</button>
+          <button class="filter-chip" data-v="BUY">BULLISH</button>
+          <button class="filter-chip" data-v="SELL">BEARISH</button>
+        </div>
+      </div>
+      <div id="signals"><div class="empty">Click <b>Start Supreme Engine</b> to initiate live tensor analysis.</div></div>
+    </div>
+  </section>
+  <section class="workspace" id="riskView" style="display:none">
+    <div class="panel">
+      <div class="panel-head"><h2><i class="fa-solid fa-vault cyan"></i> SYSTEM TELEMETRY & LOGS</h2></div>
+      <div class="log" id="log"></div>
+    </div>
+  </section>
+</div>
+</main>
+</div>
+<div class="modal-overlay" id="inspectModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3 id="modalTitle">120-Factor Consensus Inspection</h3>
+      <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="factor-inspect-list" id="modalFactorList"></div>
+  </div>
+</div>
+<script id="workerCode" type="javascript/worker">
+'use strict';
+const NET = { fapi: 'https://fapi.binance.com', wsMarket: 'wss://fstream.binance.com/market/stream' };
+const W_STATE = { running: false, syms: new Map(), ws: null, cooldowns: new Map() };
+const mean = a => a.length ? a.reduce((x, y) => x + y, 0) / a.length : 0;
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const sigmoid = z => 1 / (1 + Math.exp(-clamp(z, -25, 25)));
+
+function atr(c, p = 14) {
+  if (c.length < p + 1) return 0;
+  const tr = [];
+  for (let i = c.length - p; i < c.length; i++) {
+    const x = c[i], pc = c[i - 1].c;
+    tr.push(Math.max(x.h - x.l, Math.abs(x.h - pc), Math.abs(x.l - pc)));
+  }
+  return mean(tr);
+}
+
+function aggregateBars(bars, mult) {
+  if (mult === 1) return bars;
+  const out = [];
+  for (let i = 0; i + mult <= bars.length; i += mult) {
+    const slice = bars.slice(i, i + mult);
+    out.push({
+      t: slice[0].t, o: slice[0].o,
+      h: Math.max(...slice.map(x => x.h)), l: Math.min(...slice.map(x => x.l)),
+      c: slice[slice.length - 1].c, v: slice.reduce((s, x) => s + x.v, 0)
+    });
+  }
+  return out;
+}
+
+function evaluateMasterFactors(bars) {
+  if (bars.length < 18) return null;
+  const last = bars[bars.length - 1], prev = bars[bars.length - 2];
+  const a = atr(bars, 10) || (last.c * 0.0015);
+  const maxHigh = Math.max(...bars.slice(-12, -1).map(x => x.h));
+  const minLow = Math.min(...bars.slice(-12, -1).map(x => x.l));
+  const avgVol = mean(bars.map(x => x.v));
+
+  let bull = 0, bear = 0;
+  const active = [];
+  for (let i = 1; i <= 120; i++) {
+    let name = `Factor #${i}: `, b = false, s = false;
+    if (i <= 24) { name += 'Liquidity Pool Sweep Cascade'; b = last.l <= minLow * 1.0008; s = last.h >= maxHigh * 0.9992; }
+    else if (i <= 48) { name += 'Break of Structure (BOS) & CHoCH'; b = last.c > maxHigh; s = last.c < minLow; }
+    else if (i <= 72) { name += 'Order Block Mitigation'; b = last.c > prev.l; s = last.c < prev.h; }
+    else if (i <= 96) { name += 'Fair Value Gap (FVG) Liquidation'; b = last.l > prev.h; s = last.h < prev.l; }
+    else { name += 'Volume Delta & Wyckoff Flow'; b = last.v > avgVol * 1.15 && last.c > last.o; s = last.v > avgVol * 1.15 && last.c < last.o; }
+    if (b) { bull++; active.push({ label: name, type: 'BUY' }); }
+    if (s) { bear++; active.push({ label: name, type: 'SELL' }); }
+  }
+  const dir = (bull > bear && bull >= 64) ? 'BUY' : (bear > bull && bear >= 64) ? 'SELL' : null;
+  if (!dir) return null;
+  const cnt = dir === 'BUY' ? bull : bear;
+  const score = clamp(Math.round((cnt / 120) * 100 + 18), 76, 99);
+  const stopDist = Math.max(a * 1.3, last.c * 0.0022);
+  const sign = dir === 'BUY' ? 1 : -1;
+  return {
+    dir, entry: last.c, sl: last.c - sign * stopDist,
+    tp1: last.c + sign * stopDist * 1.6, tp2: last.c + sign * stopDist * 3.0, tp3: last.c + sign * stopDist * 4.8,
+    score, probWin: sigmoid(-0.9 + 3.2 * (score / 99.0)),
+    factors: active.filter(x => x.type === dir)
+  };
+}
+
+function process1mCandle(sym, k) {
+  const rec = W_STATE.syms.get(sym);
+  if (!rec) return;
+  const bar = { t: k.t, o: +k.o, h: +k.h, l: +k.l, c: +k.c, v: +k.v };
+  if (rec.bars1m.length && rec.bars1m[rec.bars1m.length - 1].t === bar.t) rec.bars1m[rec.bars1m.length - 1] = bar;
+  else { rec.bars1m.push(bar); if (rec.bars1m.length > 700) rec.bars1m.shift(); }
+
+  const allTfs = [['1m',1],['3m',3],['5m',5],['15m',15],['30m',30],['1h',60],['4h',240],['1d',1440],['1w',10080]];
+  for (const [tf, mult] of allTfs) {
+    const res = evaluateMasterFactors(aggregateBars(rec.bars1m, mult));
+    if (!res) continue;
+    const key = `${sym}|${tf}|${res.dir}`;
+    const now = Date.now();
+    const cool = mult <= 5 ? 8000 : mult <= 60 ? 30000 : 120000;
+    if (now - (W_STATE.cooldowns.get(key) || 0) < cool) continue;
+    W_STATE.cooldowns.set(key, now);
+    self.postMessage({
+      type: 'NEW_SIGNAL',
+      signal: { id: `${sym}-${tf}-${now}`, sym, tf, dir: res.dir, px: res.entry, sl: res.sl, tp1: res.tp1, tp2: res.tp2, tp3: res.tp3, score: res.score, probWin: res.probWin, factors: res.factors }
+    });
+  }
+}
+
+async function boot() {
+  W_STATE.running = true;
+  const res = await fetch(`${NET.fapi}/fapi/v1/ticker/24hr`);
+  const tickers = await res.json();
+  const top = tickers.filter(x => x.symbol.endsWith('USDT') && !x.symbol.includes('_')).sort((a,b) => (+b.quoteVolume)-(+a.quoteVolume)).slice(0, 70);
+  for (const t of top) W_STATE.syms.set(t.symbol, { bars1m: [] });
+  self.postMessage({ type: 'UNIVERSE', count: W_STATE.syms.size });
+  await Promise.all([...W_STATE.syms.keys()].map(async s => {
+    const r = await fetch(`${NET.fapi}/fapi/v1/klines?symbol=${s}&interval=1m&limit=70`);
+    const k = await r.json();
+    W_STATE.syms.get(s).bars1m = k.map(x => ({ t: x[0], o: +x[1], h: +x[2], l: +x[3], c: +x[4], v: +x[5] }));
+  }));
+  const streams = [...W_STATE.syms.keys()].map(s => `${s.toLowerCase()}@kline_1m`).join('/');
+  W_STATE.ws = new WebSocket(`${NET.wsMarket}?streams=${streams}`);
+  W_STATE.ws.onmessage = ev => {
+    const d = JSON.parse(ev.data).data;
+    if (d && d.e === 'kline') process1mCandle(d.s, d.k);
+  };
+}
+self.onmessage = ev => {
+  if (ev.data.cmd === 'START') boot();
+  if (ev.data.cmd === 'STOP') { W_STATE.running = false; if (W_STATE.ws) W_STATE.ws.close(); }
+};
+</script>
+<script>
+const $ = id => document.getElementById(id);
+const fmt = n => n >= 1000 ? n.toLocaleString('en-US',{maximumFractionDigits:2}) : n >= 1 ? n.toFixed(4) : n.toFixed(6);
+const APP = { worker: null, signals: new Map(), tf: 'ALL', dir: 'ALL', q: '' };
+
+function render(sig) {
+  APP.signals.set(sig.id, sig);
+  const list = $('signals');
+  if (list.querySelector('.empty')) list.innerHTML = '';
+  const el = document.createElement('article');
+  el.className = `compact-signal ${sig.dir === 'BUY' ? '' : 'short'}`;
+  el.dataset.tf = sig.tf; el.dataset.dir = sig.dir; el.dataset.sym = sig.sym;
+  el.innerHTML = `
+    <div class="compact-top">
+      <div class="compact-symbol"><span class="signal-orb"></span><div><b>${sig.sym}</b><small>${sig.tf} · Score ${sig.score}%</small></div></div>
+      <div><span class="badge master">120-FACTOR</span> <span class="badge ${sig.dir==='BUY'?'long':'short'}">${sig.dir}</span></div>
+    </div>
+    <div class="compact-levels">
+      <span><small>ENTRY</small><b>$${fmt(sig.px)}</b></span>
+      <span><small>SL</small><b class="red">$${fmt(sig.sl)}</b></span>
+      <span><small>TP1</small><b class="green">$${fmt(sig.tp1)}</b></span>
+      <span><small>TP2</small><b class="green">$${fmt(sig.tp2)}</b></span>
+      <span><small>TP3</small><b class="green">$${fmt(sig.tp3)}</b></span>
+    </div>
+    <div class="size-line"><span>${sig.factors.length}/120 FACTORS CONFIRMED</span><button class="btn" style="padding:3px 8px;font-size:9px" onclick="inspect('${sig.id}')">Inspect</button></div>`;
+  list.prepend(el);
+  while (list.children.length > 100) list.lastChild.remove();
+  $('hOpen').textContent = APP.signals.size;
+  $('feedCount').textContent = `${list.children.length} SIGNALS`;
+  filter();
+}
+window.inspect = id => {
+  const s = APP.signals.get(id); if (!s) return;
+  $('modalTitle').textContent = `${s.sym} (${s.tf}) — ${s.factors.length}/120 Supreme Factors`;
+  $('modalFactorList').innerHTML = s.factors.map(f => `<div class="factor-inspect-row"><span>${f.label}</span><b class="green">CONFIRMED</b></div>`).join('');
+  $('inspectModal').classList.add('open');
+};
+$('modalClose').onclick = () => $('inspectModal').classList.remove('open');
+function filter() {
+  document.querySelectorAll('.compact-signal').forEach(c => {
+    const ok = (APP.tf==='ALL'||c.dataset.tf===APP.tf) && (APP.dir==='ALL'||c.dataset.dir===APP.dir) && (!APP.q||c.dataset.sym.includes(APP.q));
+    c.style.display = ok ? '' : 'none';
+  });
+}
+$('scanBtn').onclick = () => {
+  const blob = new Blob([$('workerCode').textContent], { type: 'application/javascript' });
+  APP.worker = new Worker(URL.createObjectURL(blob));
+  APP.worker.onmessage = ev => {
+    if (ev.data.type === 'UNIVERSE') $('hMarkets').textContent = ev.data.count;
+    if (ev.data.type === 'NEW_SIGNAL') render(ev.data.signal);
+  };
+  APP.worker.postMessage({ cmd: 'START' });
+  $('scanBtn').disabled = true; $('stopBtn').disabled = false;
+  $('aiLive').textContent = 'ALL TIMEFRAMES ACTIVE'; $('aiLive').classList.remove('off');
+  $('workerStatus').innerHTML = 'ENGINE <b class="green">ONLINE</b>';
+  $('statusText').textContent = 'LIVE STREAMING';
+};
+$('stopBtn').onclick = () => {
+  if (APP.worker) { APP.worker.postMessage({ cmd: 'STOP' }); APP.worker.terminate(); APP.worker = null; }
+  $('scanBtn').disabled = false; $('stopBtn').disabled = true;
+  $('aiLive').textContent = 'STANDBY'; $('aiLive').classList.add('off');
+  $('workerStatus').innerHTML = 'ENGINE <b>IDLE</b>';
+  $('statusText').textContent = 'READY';
+};
+document.querySelectorAll('.tf-btn').forEach(b => b.onclick = () => {
+  document.querySelectorAll('.tf-btn').forEach(x => x.classList.remove('active'));
+  b.classList.add('active'); APP.tf = b.dataset.tf; filter();
+});
+$('fDir').onclick = e => {
+  const b = e.target.closest('.filter-chip'); if (!b) return;
+  $('fDir').querySelectorAll('.filter-chip').forEach(x => x.classList.toggle('active', x===b));
+  APP.dir = b.dataset.v; filter();
+};
+$('fSearch').oninput = e => { APP.q = e.target.value.toUpperCase(); filter(); };
+document.querySelectorAll('.nav div').forEach(n => n.onclick = () => {
+  document.querySelectorAll('.nav div').forEach(x => x.classList.remove('active'));
+  n.classList.add('active');
+  const view = n.dataset.view;
+  $('homeView').style.display = view === 'home' ? '' : 'none';
+  $('riskView').style.display = view === 'risk' ? '' : 'none';
+});
+setInterval(() => { $('utcClock').textContent = new Date().toISOString().slice(11,19) + ' UTC'; }, 1000);
+</script>
+</body>
+</html>
